@@ -9,5 +9,7 @@ public class Player {
     public String getColor(){
         return color;
     }
+    public String getName(){ return name;
+    }
 
 }
