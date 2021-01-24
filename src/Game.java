@@ -203,7 +203,6 @@ public class Game {
     }
 
     public void change(int x, int y, String color) {
-        System.out.println("1");
         String reversed = changeColor(color);
         for (int i = x - 2; i >= 0; i--) {
             //ertefa ro be bala
@@ -217,7 +216,6 @@ public class Game {
                 }
             }
         }
-        System.out.println(2);
         //ofoghi ro be chap
         for (int j = y - 2; j >= 0; j--) {
             if (GameBoard.board[x - 1][j].getPiece() != null && GameBoard.board[x - 1][j].getPiece().getColor().equals(reversed)) {
@@ -230,7 +228,6 @@ public class Game {
                 }
             }
         }
-        System.out.println("3");
         //ofoghi ro be rast
         for (int j = y; j < GameBoard.board.length; j++) {
             if (GameBoard.board[x - 1][j].getPiece() != null && GameBoard.board[x - 1][j].getPiece().getColor().equals(reversed)) {
@@ -244,7 +241,6 @@ public class Game {
             }
 
         }
-        System.out.println("4");
         for (int i = x; i < GameBoard.board.length; i++) {
             //ertefa ro be payin
             if (GameBoard.board[i][y - 1].getPiece() != null && GameBoard.board[i][y - 1].getPiece().getColor().equals(reversed)) {
@@ -257,17 +253,13 @@ public class Game {
                 }
             }
         }
-        System.out.println("5");
         //ghotri \>(az bala chap be payin rast
         if (x != GameBoard.board.length && y != GameBoard.board.length) {
-            System.out.println("6");
             if (GameBoard.board[x][y].getPiece() != null && GameBoard.board[x][y].getPiece().getColor().equals(reversed)) {
-                System.out.println("7");
                 int ki = x + 1;
                 int kj = y + 1;
                 while (ki != GameBoard.board.length && kj != GameBoard.board.length) {
                     if (GameBoard.board[ki][kj].getPiece() != null && GameBoard.board[ki][kj].getPiece().getColor().equals(turn)) {
-                        System.out.println("8");
                         int k = x;
                         int p = y;
                         while (k != GameBoard.board.length && k <= ki && p != GameBoard.board.length && p <= kj) {
@@ -282,21 +274,14 @@ public class Game {
             }
         }
         //<\(az payin rast be bala chap)
-        if (x-2 != GameBoard.board.length && y-2 != GameBoard.board.length) {
-            System.out.println("66");
-            System.out.println(x);
-            System.out.println(y);
-            System.out.println(x-2);
-            System.out.println(y-2);
-            if (GameBoard.board[x-2][y-2].getPiece() != null && GameBoard.board[x-2][y-2].getPiece().getColor().equals(reversed)) {
-                System.out.println("77");
+        if (x - 2 != GameBoard.board.length && y - 2 != GameBoard.board.length) {
+            if (GameBoard.board[x - 2][y - 2].getPiece() != null && GameBoard.board[x - 2][y - 2].getPiece().getColor().equals(reversed)) {
                 int ki = x - 3;
                 int kj = y - 3;
-                while (ki >-1 && kj > -1  ) {
+                while (ki > -1 && kj > -1) {
                     if (GameBoard.board[ki][kj].getPiece() != null && GameBoard.board[ki][kj].getPiece().getColor().equals(turn)) {
-                        System.out.println("88");
-                        int k = x-1;
-                        int p = y-1;
+                        int k = x - 1;
+                        int p = y - 1;
                         while (k > -1 && k >= ki && p > -1 && p >= kj) {
                             GameBoard.board[k][p].getPiece().setColor(turn);
                             k--;
@@ -304,6 +289,46 @@ public class Game {
                         }
                     }
                     ki--;
+                    kj--;
+                }
+            }
+        }
+        //ghortir/>(az payin chap be bala rast)
+        //x-2=>x-1
+        if (x - 2 > -1) {
+            if (GameBoard.board[x - 2][y].getPiece() != null && GameBoard.board[x - 2][y].getPiece().getColor().equals(reversed)) {
+                int ki = x - 3;
+                int kj = y + 1;
+                while (ki > -1 && kj < GameBoard.board.length) {
+                    if (GameBoard.board[ki][kj].getPiece() != null && GameBoard.board[ki][kj].getPiece().getColor().equals(turn)) {
+                        int k = x - 1;
+                        int p = y - 1;
+                        while (k > -1 && k >= ki && p > -1 && p <= kj) {
+                            GameBoard.board[k][p].getPiece().setColor(turn);
+                            k--;
+                            p++;
+                        }
+                    }
+                    ki--;
+                    kj++;
+                }
+            }
+        }
+        if (y - 2 > -1) {
+            if (GameBoard.board[x][y - 2].getPiece() != null && GameBoard.board[x][y - 2].getPiece().getColor().equals(reversed)) {
+                int ki = x + 1;
+                int kj = y - 3;
+                while (ki != GameBoard.board.length && kj > -1) {
+                    if (GameBoard.board[ki][kj].getPiece() != null && GameBoard.board[ki][kj].getPiece().getColor().equals(turn)) {
+                        int k = x - 1;
+                        int p = y - 1;
+                        while (k != GameBoard.board.length && k <= ki && p > -1 && p >= kj) {
+                            GameBoard.board[k][p].getPiece().setColor(turn);
+                            k++;
+                            p--;
+                        }
+                    }
+                    ki++;
                     kj--;
                 }
             }
