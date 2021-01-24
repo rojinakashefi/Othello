@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -222,6 +221,7 @@ public class Game {
         }
         return recommend;
     }
+
     public boolean check(int x,int y,ArrayList<Cell>cells){
         for(Cell cell:cells){
             if(cell.getX()==x-1 && cell.getY()==y-1){
@@ -232,6 +232,7 @@ public class Game {
         System.out.println("Please Choose from your recommended cells :)");
         return false;
     }
+
     public void putPiece(int x, int y, String color) {
         System.out.println("Putted your piece,Changing in process...");
         GameBoard.board[x - 1][y - 1].setPiece(new Piece(color));
@@ -368,7 +369,7 @@ public class Game {
                 }
             }
         }
-        System.out.println("\nCHANGED");
+        System.out.println("CHANGED");
     }
 
     public String changeColor(String color) {
