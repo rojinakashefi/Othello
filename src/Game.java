@@ -18,21 +18,37 @@ public class Game {
 
     public void start() {
         gettingInfo();
-        //shart payan kar
         while (true) {
+            System.out.println("\n");
             GameBoard.printingGameBoard();
             turn = changeTurn();
             if (turn.equals("white")) {
-                System.out.println("\nPlayer " + white.getName() + "(" + white.getColor() + ")" + ":\nThese are your available moves\n");
+                System.out.println("\nPlayer " + white.getName() + "(" + white.getColor() + ")" + ":\nThese are your available moves:");
             } else {
-                System.out.println("Player " + black.getName() + " (" + black.getColor() + ")");
+                System.out.println("\nPlayer " + black.getName() + " (" + black.getColor() + ")"+ ":\nThese are your available moves:");
             }
-            showRecommendingCells(showRecommend(turn));
+            showRecommendingCells(noRepeatedCells(showRecommend(turn)));
             System.out.println("\nplease enter your next move:");
             System.out.println("x:");
             int x = scanner.nextInt();
+            if(x<0 || x>9 ){
+                System.out.println("Please enter number in size of board(1 to  8)!");
+                System.out.println("x:");
+                x=scanner.nextInt();
+            }
             System.out.println("y:");
             int y = scanner.nextInt();
+            if(y<0 || y>9 ){
+                System.out.println("Please enter number in size of board(1 to  8)!");
+                System.out.println("y:");
+                y=scanner.nextInt();
+            }
+            if(!check(x,y,noRepeatedCells(showRecommend(turn)))){
+                System.out.println("x:");
+                x=scanner.nextInt();
+                System.out.println("y:");
+                y=scanner.nextInt();
+            }
             putPiece(x, y, turn);
             change(x, y, turn);
             if (finished()) {
@@ -54,11 +70,23 @@ public class Game {
 
 
     public void showRecommendingCells(ArrayList<Cell> cells) {
+        int counter=1;
         for (Cell cell : cells) {
             int x = cell.getX() + 1;
             int y = cell.getY() + 1;
-            System.out.println("(" + x + "," + y + ")");
+            System.out.println(counter+" -> "+"(" + x + "," + y + ")");
+            counter++;
         }
+    }
+
+    public ArrayList<Cell> noRepeatedCells(ArrayList<Cell> cells) {
+        ArrayList<Cell> newList = new ArrayList<Cell>();
+        for (Cell cell : cells) {
+            if (!newList.contains(cell)) {
+                newList.add(cell);
+            }
+        }
+        return newList;
     }
 
     public String changeTurn() {
@@ -194,12 +222,19 @@ public class Game {
         }
         return recommend;
     }
-
-
+    public boolean check(int x,int y,ArrayList<Cell>cells){
+        for(Cell cell:cells){
+            if(cell.getX()==x-1 && cell.getY()==y-1){
+                //one cell founded
+               return true;
+            }
+        }
+        System.out.println("Please Choose from your recommended cells :)");
+        return false;
+    }
     public void putPiece(int x, int y, String color) {
-        System.out.println("\n");
+        System.out.println("Putted your piece,Changing in process...");
         GameBoard.board[x - 1][y - 1].setPiece(new Piece(color));
-        GameBoard.printingGameBoard();
     }
 
     public void change(int x, int y, String color) {
@@ -333,8 +368,7 @@ public class Game {
                 }
             }
         }
-        System.out.println("\n\nChanged\n");
-        GameBoard.printingGameBoard();
+        System.out.println("\nCHANGED");
     }
 
     public String changeColor(String color) {
