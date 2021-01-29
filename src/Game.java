@@ -7,12 +7,13 @@ public class Game {
     GameBoard gameBoard;
     Scanner scanner;
     String turn = "";
-
+    static int whiteScore = 0;
+    static int blackScore = 0;
     public Game() {
         gameBoard = new GameBoard();
         scanner = new Scanner(System.in);
         gameBoard.initializingGameBoard();
-        start();
+        //start();
     }
 
     public void start() {
@@ -282,7 +283,7 @@ public class Game {
             if (GameBoard.board[i][y - 1].getPiece() != null && GameBoard.board[i][y - 1].getPiece().getColor().equals(reversed)) {
                 for (int k = i + 1; k < GameBoard.board.length; k++) {
                     if (GameBoard.board[k][y - 1].getPiece() != null && GameBoard.board[k][y - 1].getPiece().getColor().equals(turn)) {
-                        for (int p = k; p >= i; p--) {
+                        for (int p = k; p >=i; p--) {
                             GameBoard.board[p][y - 1].getPiece().setColor(turn);
                         }
                     }
@@ -310,7 +311,7 @@ public class Game {
             }
         }
         //<\(az payin rast be bala chap)
-        if (x - 2 != GameBoard.board.length && y - 2 != GameBoard.board.length) {
+        if (x-2>=0 && x - 2 != GameBoard.board.length && y - 2 != GameBoard.board.length && y-2>=0) {
             if (GameBoard.board[x - 2][y - 2].getPiece() != null && GameBoard.board[x - 2][y - 2].getPiece().getColor().equals(reversed)) {
                 int ki = x - 3;
                 int kj = y - 3;
@@ -331,7 +332,7 @@ public class Game {
         }
         //ghortir/>(az payin chap be bala rast)
         //x-2=>x-1
-        if (x - 2 > -1) {
+        if (x - 2 > -1 && y!=GameBoard.board.length) {
             if (GameBoard.board[x - 2][y].getPiece() != null && GameBoard.board[x - 2][y].getPiece().getColor().equals(reversed)) {
                 int ki = x - 3;
                 int kj = y + 1;
@@ -350,7 +351,7 @@ public class Game {
                 }
             }
         }
-        if (y - 2 > -1) {
+        if (y - 2 > -1 && x!=gameBoard.getBoard().length) {
             if (GameBoard.board[x][y - 2].getPiece() != null && GameBoard.board[x][y - 2].getPiece().getColor().equals(reversed)) {
                 int ki = x + 1;
                 int kj = y - 3;
@@ -380,8 +381,6 @@ public class Game {
     }
 
     public boolean finished() {
-        int whiteScore = 0;
-        int blackScore = 0;
         for (int i = 0; i < 8; i++) {
             for (int k = 0; k < 8; k++) {
                 if (GameBoard.board[i][k].getPiece() == null) {
@@ -389,18 +388,23 @@ public class Game {
                 }
             }
         }
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                if (GameBoard.board[i][j].getPiece().getColor().equals("white")) {
-                    whiteScore++;
-                } else {
-                    blackScore++;
+        return true;
+    }
+    public void checkScore(String turn){
+       blackScore=0;
+       whiteScore=0;
+        for(int i=0;i<8;i++){
+            for(int j=0;j<8;j++){
+                if(GameBoard.board[i][j].getPiece()!=null){
+                    if(GameBoard.board[i][j].getPiece().getColor().equals("white")){
+                        whiteScore++;
+                    }
+                    else{
+                        blackScore++;
+                    }
                 }
             }
         }
-        System.out.println(whiteScore);
-        System.out.println(blackScore);
-        return true;
     }
 }
 
