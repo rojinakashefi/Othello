@@ -32,11 +32,12 @@ Then the game alternates between white and black until:
 
      for example:
 
-     <img src="/Users/kashefi/Desktop/Screen Shot 2021-01-29 at 11.14.40 AM.png" alt="Screen Shot 2021-01-29 at 11.14.40 AM" style="zoom:25%;" />
+    ![](https://github.com/rojinakashefi/Othello/blob/main/Screen%20Shot%202021-01-29%20at%2011.14.40%20AM.png)
+
 
      by putting white piece in (x=6,y=4),the black piece in(x=5,y=4)must change in white color(horizontal change):
+     ![](https://github.com/rojinakashefi/Othello/blob/main/Screen%20Shot%202021-01-29%20at%2011.17.34%20AM.png)
 
-     <img src="/Users/kashefi/Desktop/Screen Shot 2021-01-29 at 11.17.34 AM.png" alt="Screen Shot 2021-01-29 at 11.17.34 AM" style="zoom:25%;" />
 
 ### End of the game
 
