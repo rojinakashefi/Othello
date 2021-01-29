@@ -105,7 +105,7 @@ public class Game {
                     if (GameBoard.board[i][j].getPiece().getColor().equals(turn)) {
                         String reversedColor = changeColor(turn);
                         //payin
-                        if (GameBoard.board[i + 1][j].getPiece() != null &&
+                        if (i+1<GameBoard.board.length && GameBoard.board[i + 1][j].getPiece() != null &&
                                 GameBoard.board[i + 1][j].getPiece().getColor().equals(reversedColor)) {
                             for (int k = i + 2; k < GameBoard.board.length; k++) {
                                 if (GameBoard.board[k][j].getPiece() == null) {

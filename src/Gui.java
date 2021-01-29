@@ -83,12 +83,12 @@ public class Gui extends JFrame implements ActionListener {
                         button[i][j].setOpaque(true);
                         button[i][j].setBorderPainted(false);
                         button[i][j].setBackground(Color.WHITE);
-                        button[i][j].setText(i+1+","+j+1);
+                        button[i][j].setText((i+1)+","+(j+1));
                     } else {
                         button[i][j].setOpaque(true);
                         button[i][j].setBorderPainted(false);
                         button[i][j].setBackground(Color.BLACK);
-                        button[i][j].setText(i+1+","+j+1);
+                        button[i][j].setText((i+1)+","+(j+1));
                     }
                 }
             }
